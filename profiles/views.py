@@ -10,7 +10,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.views.generic.list_detail import object_list
+from django.views.generic.list import ListView
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -253,7 +253,7 @@ def profile_list(request, public_profile_field=None,
     
     Context:
     
-    Same as the :view:`django.views.generic.list_detail.object_list`
+    Same as the :view:`django.views.generic.list ListView`
     generic view.
     
     Template:
@@ -267,4 +267,4 @@ def profile_list(request, public_profile_field=None,
     if public_profile_field is not None:
         queryset = queryset.filter(**{ public_profile_field: True })
     kwargs['queryset'] = queryset
-    return object_list(request, template_name=template_name, **kwargs)
+    return ListView(request, template_name=template_name, **kwargs)
